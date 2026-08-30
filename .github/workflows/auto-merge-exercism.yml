@@ -1,0 +1,37 @@
+name: Auto-merge Exercism Sync Branches
+
+on:
+  push:
+    branches:
+      - 'exercism-sync/**'
+
+jobs:
+  merge-to-main:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git identity
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Merge branch into main
+        run: |
+          git checkout main
+          git pull origin main
+          SOURCE_BRANCH="${{ github.ref_name }}"
+          echo "Merging $SOURCE_BRANCH into main..."
+          git merge --no-edit "$SOURCE_BRANCH"
+          git push origin main
+
+      - name: Delete source branch
+        run: |
+          git push origin --delete "${{ github.ref_name }}"
