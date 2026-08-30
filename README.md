@@ -29,3 +29,31 @@ Solutions are automatically synced and organized by exercise topic under the `so
         ├── hello-world/
         ├── lasagna/
         └── weather-forecast/
+```
+<!-- TREE_END -->
+
+Each exercise directory typically includes:
+* The Go source file (`<exercise>.go`) containing the implemented solution.
+* Test files provided by the Exercism test runner.
+
+---
+
+## Running Tests Locally
+
+To run the unit tests for any specific exercise on your local machine:
+
+1. Navigate to the exercise directory:
+   ```bash
+   cd solutions/go/<exercise-name>/1
+   ```
+
+2. Run tests using standard Go tooling:
+   ```bash
+   go test -v
+   ```
+
+---
+
+## Automated Sync
+
+Solutions are automatically backed up through the Exercism GitHub integration and merged into the `main` branch using GitHub Actions to keep the repository organized and up to date.
