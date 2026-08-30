@@ -23,13 +23,21 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Merge branch into main
+      - name: Fast-forward / Apply Exercism commit to main
         run: |
           git checkout main
           git pull origin main
+
           SOURCE_BRANCH="${{ github.ref_name }}"
-          echo "Merging $SOURCE_BRANCH into main..."
-          git merge --no-edit "$SOURCE_BRANCH"
+          
+          # Extract the original commit message from the incoming branch
+          COMMIT_MSG=$(git log -1 --pretty=%B "$SOURCE_BRANCH")
+          
+          # Merge using the exact original commit message
+          echo "Merging $SOURCE_BRANCH with message: $COMMIT_MSG"
+          git merge --no-ff -m "$COMMIT_MSG" "$SOURCE_BRANCH"
+
+          # Push to main
           git push origin main
 
       - name: Delete source branch
