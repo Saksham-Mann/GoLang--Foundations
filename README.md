@@ -29,7 +29,8 @@ Solutions are automatically synced and organized by exercise topic under the `so
         ├── cars-assemble/
         ├── hello-world/
         ├── lasagna/
-        └── weather-forecast/
+        ├── weather-forecast/
+        └── welcome-to-tech-palace/
 ```
 <!-- TREE_END -->
 
