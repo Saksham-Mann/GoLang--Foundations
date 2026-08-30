@@ -23,21 +23,62 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Fast-forward / Apply Exercism commit to main
+      - name: Merge Exercism commit to main
         run: |
           git checkout main
           git pull origin main
 
           SOURCE_BRANCH="${{ github.ref_name }}"
-          
-          # Extract the original commit message from the incoming branch
           COMMIT_MSG=$(git log -1 --pretty=%B "$SOURCE_BRANCH")
-          
-          # Merge using the exact original commit message
+
           echo "Merging $SOURCE_BRANCH with message: $COMMIT_MSG"
           git merge --no-ff -m "$COMMIT_MSG" "$SOURCE_BRANCH"
 
-          # Push to main
+      - name: Update README.md Directory Tree
+        run: |
+          python3 -c "
+          import os
+          import re
+
+          base_path = 'solutions/go'
+          if not os.path.exists(base_path):
+              exit(0)
+
+          exercises = sorted([
+              d for d in os.listdir(base_path)
+              if os.path.isdir(os.path.join(base_path, d)) and not d.startswith('.')
+          ])
+
+          tree_lines = [
+              '.',
+              '├── .github/workflows/        # Automated merge workflows for Exercism sync',
+              '└── solutions/',
+              '    └── go/'
+          ]
+
+          total = len(exercises)
+          for idx, item in enumerate(exercises):
+              branch = '└── ' if idx == total - 1 else '├── '
+              tree_lines.append(f'        {branch}{item}/')
+
+          tree_text = '\n'.join(tree_lines)
+          ticks = chr(96) * 3
+          replacement = f'<!-- TREE_START -->\n{ticks}text\n{tree_text}\n{ticks}\n<!-- TREE_END -->'
+
+          with open('README.md', 'r') as f:
+              content = f.read()
+
+          new_content = re.sub(r'<!-- TREE_START -->.*?<!-- TREE_END -->', replacement, content, flags=re.DOTALL)
+
+          with open('README.md', 'w') as f:
+              f.write(new_content)
+          "
+
+          if ! git diff --quiet README.md; then
+            git add README.md
+            git commit -m "docs: auto-update repository structure in README"
+          fi
+
           git push origin main
 
       - name: Delete source branch
