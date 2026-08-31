@@ -8,7 +8,6 @@ on:
 
 jobs:
   sync-and-update:
-    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -28,15 +27,17 @@ jobs:
       - name: Merge Exercism branch (if triggered by sync branch)
         if: startsWith(github.ref_name, 'exercism-sync/')
         run: |
-          git fetch origin ${{ github.ref_name }}:${{ github.ref_name }}
+          SOURCE_BRANCH="${{ github.ref_name }}"
+          
+          # Checkout main and ensure it is up to date
           git checkout main
           git pull origin main
 
-          SOURCE_BRANCH="${{ github.ref_name }}"
-          COMMIT_MSG=$(git log -1 --pretty=\%B "$SOURCE_BRANCH")
+          # Extract commit message from the source branch
+          COMMIT_MSG=$(git log -1 --pretty=\%B "origin/$SOURCE_BRANCH")
 
-          echo "Merging $SOURCE_BRANCH with message:$COMMIT_MSG"
-          git merge --no-ff -m "$COMMIT_MSG" "$SOURCE_BRANCH"
+          echo "Merging origin/$SOURCE_BRANCH into main with message:$COMMIT_MSG"
+          git merge --no-ff -m "$COMMIT_MSG" "origin/$SOURCE_BRANCH"
 
       - name: Update README.md Directory Tree
         run: |
@@ -84,7 +85,6 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -m "docs: auto-update repository structure in README [skip ci]"
           fi
-
 
           git push origin main
 
