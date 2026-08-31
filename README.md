@@ -29,6 +29,7 @@ Solutions are automatically synced and organized by exercise topic under the `so
         ├── cars-assemble/
         ├── hello-world/
         ├── lasagna/
+        ├── party-robot/
         ├── weather-forecast/
         └── welcome-to-tech-palace/
 ```
