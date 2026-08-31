@@ -30,6 +30,7 @@ Solutions are automatically synced and organized by exercise topic under the `so
         ├── hello-world/
         ├── lasagna/
         ├── party-robot/
+        ├── vehicle-purchase/
         ├── weather-forecast/
         └── welcome-to-tech-palace/
 ```
