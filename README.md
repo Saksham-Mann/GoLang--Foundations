@@ -27,6 +27,7 @@ Solutions are automatically synced and organized by exercise topic under the `so
     └── go/
         ├── annalyns-infiltration/
         ├── blackjack/
+        ├── card-tricks/
         ├── cars-assemble/
         ├── hello-world/
         ├── lasagna/
