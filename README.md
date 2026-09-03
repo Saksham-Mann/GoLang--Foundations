@@ -26,6 +26,7 @@ Solutions are automatically synced and organized by exercise topic under the `so
 └── solutions/
     └── go/
         ├── annalyns-infiltration/
+        ├── bird-watcher/
         ├── blackjack/
         ├── card-tricks/
         ├── cars-assemble/
