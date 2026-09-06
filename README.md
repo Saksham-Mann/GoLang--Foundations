@@ -31,6 +31,7 @@ Solutions are automatically synced and organized by exercise topic under the `so
         ├── card-tricks/
         ├── cars-assemble/
         ├── hello-world/
+        ├── interest-is-interesting/
         ├── lasagna/
         ├── lasagna-master/
         ├── need-for-speed/
