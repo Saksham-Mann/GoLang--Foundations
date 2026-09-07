@@ -39,6 +39,7 @@ Solutions are automatically synced and organized by exercise topic under the `so
         ├── need-for-speed/
         ├── party-robot/
         ├── raindrops/
+        ├── two-fer/
         ├── vehicle-purchase/
         ├── weather-forecast/
         └── welcome-to-tech-palace/
