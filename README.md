@@ -25,6 +25,7 @@ Solutions are automatically synced and organized by exercise topic under the `so
 ├── .github/workflows/        # Automated merge workflows for Exercism sync
 └── solutions/
     └── go/
+        ├── animal-magic/
         ├── annalyns-infiltration/
         ├── bird-watcher/
         ├── blackjack/
