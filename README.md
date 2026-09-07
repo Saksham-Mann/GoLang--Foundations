@@ -37,6 +37,7 @@ Solutions are automatically synced and organized by exercise topic under the `so
         ├── interest-is-interesting/
         ├── lasagna/
         ├── lasagna-master/
+        ├── leap/
         ├── need-for-speed/
         ├── party-robot/
         ├── raindrops/
