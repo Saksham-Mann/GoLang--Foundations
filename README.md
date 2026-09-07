@@ -38,6 +38,7 @@ Solutions are automatically synced and organized by exercise topic under the `so
         ├── lasagna-master/
         ├── need-for-speed/
         ├── party-robot/
+        ├── raindrops/
         ├── vehicle-purchase/
         ├── weather-forecast/
         └── welcome-to-tech-palace/
