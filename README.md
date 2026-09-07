@@ -32,6 +32,7 @@ Solutions are automatically synced and organized by exercise topic under the `so
         ├── booking-up-for-beauty/
         ├── card-tricks/
         ├── cars-assemble/
+        ├── hamming/
         ├── hello-world/
         ├── interest-is-interesting/
         ├── lasagna/
