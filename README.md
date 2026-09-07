@@ -29,6 +29,7 @@ Solutions are automatically synced and organized by exercise topic under the `so
         ├── annalyns-infiltration/
         ├── bird-watcher/
         ├── blackjack/
+        ├── booking-up-for-beauty/
         ├── card-tricks/
         ├── cars-assemble/
         ├── hello-world/
